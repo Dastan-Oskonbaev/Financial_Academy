@@ -8,8 +8,8 @@ class Contact(models.Model):
         _('email'),
         max_length=50,
     )
-    instagramm = models.URLField(
-        _('instagramm'),
+    instagram = models.URLField(
+        _('instagram'),
         max_length=100,
     )
     whatsapp = models.URLField(
@@ -42,8 +42,9 @@ class Teacher(models.Model):
         _('full name'),
         max_length=100,
     )
-    experience = models.PositiveIntegerField(
+    experience = models.TextField(
         _('experience'),
+        max_length=500
     )
     achievements = models.TextField(
         _('achievements'),
@@ -119,6 +120,7 @@ class Course(models.Model):
     is_active = models.BooleanField(
         default=False
     )
+
 
     class Meta:
         verbose_name = _('Course')
