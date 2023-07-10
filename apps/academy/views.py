@@ -1,12 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 
-from apps.academy.models import Teacher, Course
+from apps.academy.models import Teacher, Course, Contact
 
 
 class IndexView(View):
     def get(self, request):
-        context = {'title': 'Главная страница'}
+        teachers = Teacher.objects.all()
+        courses = Course.objects.all()
+        contact = Contact.objects.all()
+        context = {'title': 'Главная страница'
+                   , 'teachers': teachers
+                   , 'courses': courses
+                   , 'contact': contact
+                   }
         return render(request, 'academy/index.html', context)
 
 
