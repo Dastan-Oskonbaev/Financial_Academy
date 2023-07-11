@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 
-from apps.academy.models import Teacher, Course, Contact
+from apps.academy.models import Teacher, Course, Contact, News
 
 
 class IndexView(View):
@@ -36,3 +36,32 @@ class CourseDetailView(View):
         }
         return render(request, 'academy/course_detail.html', context)
 
+
+class NewsDetailView(View):
+    def get(self, request, news_id):
+        news = get_object_or_404(News, id=news_id)
+        context = {
+            'title': f'{news.title} - новости',
+            'news': news,
+        }
+        return render(request, 'academy/news_detail.html', context)
+
+
+class TeacherListView(View):
+    def get(self, request):
+        teachers = Teacher.objects.all()
+        context = {
+            'title': 'Список преподавателей',
+            'teachers': teachers,
+        }
+        return render(request, 'academy/teacher_list.html', context)
+
+
+class NewsListView(View):
+    def get(self, request):
+        news = News.objects.all()
+        context = {
+            'title': 'Список новостей',
+            'news': news,
+        }
+        return render(request, 'academy/news_list.html', context)
