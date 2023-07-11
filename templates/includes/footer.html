@@ -4,7 +4,7 @@
         <div class="row g-5 text-center justify-content-center">
 
             <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-3">Contact</h4>
+                <h4 class="text-white mb-3" style="color: limegreen !important;">Contact</h4>
                 {% for cont in contact %}
                 <a href="{{ cont.address }}" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> Наш Адрес </a>
                 <br>
@@ -14,16 +14,16 @@
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-3">Аккредитация</h4>
+                <h4 class="text-white mb-3" style="color: limegreen !important;">Аккредитация</h4>
                 <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <div class="d-flex pt-2 justify-content-center">
                     {% for cont in contact %}
-                    <a class="btn btn-outline-light btn-social" href="{{ cont.instagram }}"><i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="{{ cont.whatsapp }}"><i class="fab fa-whatsapp"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="{{ cont.telegram }}"><i class="fab fa-telegram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="{{ cont.instagram }}" style="color: limegreen !important;"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="{{ cont.whatsapp }}" style="color: limegreen !important;"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="{{ cont.telegram }}" style="color: limegreen !important;"><i class="fab fa-telegram"></i></a>
                     {% endfor %}
                 </div>
             </div>
@@ -32,8 +32,8 @@
    <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-            &copy; <a class="border-bottom" >Practicum</a>, All Right Reserved.
-            Developed By <a class="border-bottom" href="https://t.me/DastanOskonbaev">Oskonbaev</a> & <a class="border-bottom" href="https://t.me/osmon03">Shatmanov</a>
+            &copy; <a >Practicum</a>, All Right Reserved.
+            Developed By <a href="https://t.me/DastanOskonbaev">Oskonbaev</a> & <a href="https://t.me/osmon03">Shatmanov</a>
         </div>
     </div>
     <hr class="my-4">
