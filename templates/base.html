@@ -53,5 +53,35 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Модальное окно с формой обратной связи -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Оставить заявку</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'index' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="feedbackFullName" class="form-label">ФИО</label><br>
+                            {{ form.full_name }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="feedbackPhoneNumber" class="form-label">Номер телефона</label><br>
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="feedbackCourse" class="form-label">Курсы</label><br>
+                            {{ form.course }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

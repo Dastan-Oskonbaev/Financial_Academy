@@ -186,3 +186,26 @@ class NewsImages(models.Model):
 
     def __str__(self):
         return self.news.title
+
+
+class Request(models.Model):
+    full_name = models.CharField(
+        _('Full name'),
+        max_length=255,
+    )
+    phone_number = models.CharField(
+        _('Phone number'),
+        max_length=255,
+    )
+    course = models.ForeignKey(
+        Course,
+        verbose_name=_('Course'),
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return f'{self.full_name}'
+
+    class Meta:
+        verbose_name = _('Request')
+        verbose_name_plural = _('Requests')

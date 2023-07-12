@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from apps.academy.models import TeachersImages, CourseImages, NewsImages, Teacher, Course, News, Contact
+from apps.academy.models import TeachersImages, CourseImages, NewsImages, Teacher, Course, News, Contact, Request
 
 
 class TeachersImagesInline(admin.TabularInline):
@@ -49,3 +49,8 @@ class ContactAdmin(admin.ModelAdmin):
 @admin.register(TeachersImages)
 class TeachersImagesAdmin(admin.ModelAdmin):
     list_display = ('teacher', 'images')
+
+
+@admin.register(Request)
+class RequestAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'phone_number', 'course')
