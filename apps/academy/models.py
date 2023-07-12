@@ -71,7 +71,7 @@ class Teacher(models.Model):
 class TeachersImages(models.Model):
     images = models.ImageField(
         _('images'),
-        upload_to='teachers/',
+        upload_to='teachers_images/',
     )
     teacher = models.ForeignKey(
         'Teacher',

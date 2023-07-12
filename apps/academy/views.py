@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 
-from apps.academy.models import Teacher, Course, Contact, News
+from apps.academy.models import Teacher, Course, Contact, News, TeachersImages
 
 
 class IndexView(View):
@@ -23,6 +23,7 @@ class TeacherDetailView(View):
         context = {
             'title': f'{teacher.full_name} - преподаватель',
             'teacher': teacher,
+            'teachers_images': TeachersImages.objects.all(),
         }
         return render(request, 'academy/teacher_detail.html', context)
 

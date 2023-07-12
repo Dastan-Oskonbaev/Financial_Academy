@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from apps.academy.models import TeachersImages, CourseImages, NewsImages, Teacher, Course, News, Contact
 
@@ -43,3 +44,8 @@ class NewsAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('email', 'instagram', 'telegram', 'whatsapp', 'phone_number', 'address')
     save_on_top = True
+
+
+@admin.register(TeachersImages)
+class TeachersImagesAdmin(admin.ModelAdmin):
+    list_display = ('teacher', 'images')
