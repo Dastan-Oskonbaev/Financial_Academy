@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
-from apps.academy.models import Teacher, Course, Contact, News, TeachersImages
+from apps.academy.models import Teacher, Course, Contact, News, TeachersImages, Stocks
 from .forms import RequestForm
 
 
@@ -10,12 +10,19 @@ class IndexView(View):
         teachers = Teacher.objects.all()
         courses = Course.objects.all()
         contact = Contact.objects.all()
+        stocks = Stocks.objects.all()
+        stocks = stocks[::-1]
+        stock_item_first = stocks[0]
+        stock_item_second = stocks[1]
         form = RequestForm()
         context = {'title': 'Главная страница',
                    'teachers': teachers,
                    'courses': courses,
                    'contact': contact,
                    'form': form,
+                   'stocks': stocks,
+                   'stock_item_first': stock_item_first,
+                   'stock_item_second': stock_item_second,
                    }
         return render(request, 'academy/index.html', context)
 
@@ -57,20 +64,6 @@ class CourseDetailView(View):
         return render(request, 'academy/course_detail.html', context)
 
 
-class NewsDetailView(View):
-    def get(self, request, news_id):
-        news = get_object_or_404(News, id=news_id)
-        contact = Contact.objects.all()
-        form = RequestForm()
-        context = {
-            'title': f'{news.title} - новости',
-            'news': news,
-            'contact': contact,
-            'form': form,
-        }
-        return render(request, 'academy/news_detail.html', context)
-
-
 class TeacherListView(View):
     def get(self, request):
         teachers = Teacher.objects.all()
@@ -90,10 +83,12 @@ class NewsListView(View):
         news = News.objects.all()
         contact = Contact.objects.all()
         form = RequestForm()
+        stocks = Stocks.objects.all()
         context = {
             'title': 'Список новостей',
             'news': news,
             'contact': contact,
             'form': form,
+            'stocks': stocks,
         }
         return render(request, 'academy/news_list.html', context)

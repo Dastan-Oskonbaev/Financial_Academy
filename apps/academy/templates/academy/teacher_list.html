@@ -30,7 +30,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="team-item bg-light d-flex flex-column align-items-center">
                     <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }}">
+                        <a href="{% url 'teacher_detail' teacher.pk %}"><img class="img-fluid" src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }}"></a>
                     </div>
                     <div class="text-center p-4">
                         <h5 class="mb-0"><a href="{% url 'teacher_detail' teacher.pk %}">{{ teacher.full_name }}</a></h5>

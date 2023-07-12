@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 
 from django.utils.translation import gettext_lazy as _
@@ -159,6 +161,10 @@ class News(models.Model):
         _('description'),
         max_length=500,
     )
+    date = models.DateField(
+        _('Date'),
+        default=timezone.now(),
+    )
 
     class Meta:
         verbose_name = _('News')
@@ -209,3 +215,45 @@ class Request(models.Model):
     class Meta:
         verbose_name = _('Request')
         verbose_name_plural = _('Requests')
+
+
+class Stocks(models.Model):
+    title = models.CharField(
+        _('title'),
+        max_length=100,
+    )
+    description = models.TextField(
+        _('description'),
+        max_length=500,
+    )
+    date = models.DateField(
+        _('Date'),
+        default=timezone.now(),
+    )
+
+    class Meta:
+        verbose_name = _('Stock')
+        verbose_name_plural = _('Stocks')
+
+    def __str__(self):
+        return self.title
+
+
+class StocksImages(models.Model):
+    images = models.ImageField(
+        _('images'),
+        upload_to='stocks/',
+    )
+    stocks = models.ForeignKey(
+        'Stocks',
+        verbose_name=_('Stocks'),
+        related_name='images',
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        verbose_name = _('Stock image')
+        verbose_name_plural = _('Stocks images')
+
+    def __str__(self):
+        return self.stocks.title

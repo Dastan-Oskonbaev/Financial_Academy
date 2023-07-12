@@ -1,5 +1,90 @@
 {% extends 'base.html' %}
-{% block title%}Новости{% endblock title %}
-{% block content %}
 
+{% block title%}Новости{% endblock title %}
+
+{% block content %}
+<style>
+    .carousel-item img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+    }
+</style>
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h4 class="section-title bg-white text-center text-primary px-3">Акции</h4>
+        </div>
+        <br>
+        {% for stocks in stocks %}
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="stocks-images-{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for image in stocks.images.all %}
+                        <button type="button" data-bs-target="#stocks-images-{{ forloop.parentloop.counter }}"
+                                data-bs-slide-to="{{ forloop.counter0 }}"
+                                {% if forloop.first %}class="active" {% endif %}
+                                aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                                aria-label="{{ image.stocks.title }} {{ forloop.counter0 }}">
+                        </button>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-inner">
+                        {% for image in stocks.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ image.images.url }}" class="d-block w-100" alt="{{ image.stocks.title }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="mb-4">{{ stocks.title }}</h1>
+                <h4 class="mb-4">{{ stocks.description }}</h4>
+                <p class="lead">{{ stocks.date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h4 class="section-title bg-white text-center text-primary px-3">Новости</h4>
+        </div>
+        <br>
+        {% for news in news %}
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="news-images-{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for image in news.images.all %}
+                        <button type="button" data-bs-target="#news-images-{{ forloop.parentloop.counter }}"
+                                data-bs-slide-to="{{ forloop.counter0 }}"
+                                {% if forloop.first %}class="active" {% endif %}
+                                aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                                aria-label="{{ image.news.title }} {{ forloop.counter0 }}">
+                        </button>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-inner">
+                        {% for image in news.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ image.images.url }}" class="d-block w-100" alt="{{ image.news.title }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="mb-4">{{ news.title }}</h1>
+                <h4 class="mb-4">{{ news.description }}</h4>
+                <p class="lead">{{ news.date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock content %}
