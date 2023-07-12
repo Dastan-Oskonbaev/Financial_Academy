@@ -9,10 +9,10 @@ class IndexView(View):
         teachers = Teacher.objects.all()
         courses = Course.objects.all()
         contact = Contact.objects.all()
-        context = {'title': 'Главная страница'
-                   , 'teachers': teachers
-                   , 'courses': courses
-                   , 'contact': contact
+        context = {'title': 'Главная страница',
+                   'teachers': teachers,
+                   'courses': courses,
+                   'contact': contact,
                    }
         return render(request, 'academy/index.html', context)
 
