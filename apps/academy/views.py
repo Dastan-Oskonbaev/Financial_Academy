@@ -3,6 +3,7 @@ from django.views import View
 
 from apps.academy.models import Teacher, Course, Contact, News, TeachersImages, Stocks
 from .forms import RequestForm
+from .sender import send_whatsapp_notification
 
 
 class IndexView(View):
@@ -10,26 +11,40 @@ class IndexView(View):
         teachers = Teacher.objects.all()
         courses = Course.objects.all()
         contact = Contact.objects.all()
-        stocks = Stocks.objects.all()
-        stocks = stocks[::-1]
-        stock_item_first = stocks[0]
-        stock_item_second = stocks[1]
+        stocks = Stocks.objects.all()[::-1]
+        news = News.objects.all()[::-1]
+
         form = RequestForm()
-        context = {'title': 'Главная страница',
-                   'teachers': teachers,
-                   'courses': courses,
-                   'contact': contact,
-                   'form': form,
-                   'stocks': stocks,
-                   'stock_item_first': stock_item_first,
-                   'stock_item_second': stock_item_second,
-                   }
+
+        context = {
+            'title': 'Главная страница',
+            'teachers': teachers,
+            'courses': courses,
+            'contact': contact,
+            'form': form,
+        }
+
+        if len(stocks) >= 2:
+            context['first_item'] = stocks[0]
+            context['second_item'] = stocks[1]
+        elif len(news) >= 2:
+            context['first_item'] = news[0]
+            context['second_item'] = news[1]
+
         return render(request, 'academy/index.html', context)
 
     def post(self, request):
         form = RequestForm(request.POST)
         if form.is_valid():
             form.save()
+
+            data = form.cleaned_data
+            message = f'''Новая форма была заполнена:
+ФИО: {data['full_name']}
+Номер тел.: {data['phone_number']}
+Курсы: {data['course']}'''
+            send_whatsapp_notification(message)
+
             return redirect('index')
 
         return render(request, 'academy/index.html')
