@@ -2,6 +2,67 @@
 {% load static %}
 {% block title %}Teacher Detail{% endblock title %}
 {% block content %}
+<style>/* CSS стили для всплывающего окна */
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 400px; /* Задайте желаемую ширину */
+    height: 400px; /* Задайте желаемую высоту */
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+
+
+
+</style>
+<script>
+    // JavaScript код
+document.addEventListener('DOMContentLoaded', function() {
+    var imageWrappers = document.querySelectorAll('.image-wrapper');
+    var modalOverlays = document.querySelectorAll('.modal-overlay');
+
+    imageWrappers.forEach(function(wrapper, index) {
+        wrapper.addEventListener('click', function() {
+            modalOverlays[index].classList.toggle('active');
+        });
+    });
+});
+
+</script>
 <!-- About Start -->
 <div class="container-xxl py-5">
     <div class="container">
@@ -28,13 +89,22 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        {% for image in teacher.images.all %}
-        <div class="col-sm-4 d-flex align-items-center justify-content-center">
+<!-- HTML код -->
+<div class="row justify-content-center">
+    {% for image in teacher.images.all %}
+    <div class="col-sm-4">
+        <div class="image-wrapper">
             <img src="{{ image.images.url }}" class="img-fluid" alt="{{ image.teacher.name }}">
+            <div class="modal-overlay">
+                <div class="modal-content">
+                    <img src="{{ image.images.url }}" class="modal-image" alt="{{ image.teacher.name }}">
+                </div>
+            </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
+
 
 
 </div>
