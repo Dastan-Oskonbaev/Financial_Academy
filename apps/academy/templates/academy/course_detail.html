@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Course Detail{% endblock title %}
+{% block content %}
+
+    <title>Детальная страница курса</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .course-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .course-header {
+            background-color: #6c63ff;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .course-title {
+            color: #fff;
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .course-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 30px;
+        }
+
+        .course-details {
+            padding: 30px;
+        }
+
+        .course-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .course-details p {
+            margin: 0;
+        }
+
+        .course-details strong {
+            color: #333;
+        }
+
+        .instructor-section {
+            background-color: #f9f9f9;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .instructor-name {
+            color: #6c63ff;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .instructor-bio {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+    </style>
+    <div class="course-container">
+        <div class="course-header">
+            <h1 class="course-title">{{ course.name}}</h1>
+        </div>
+        <img src={{ course.images.first.images.url }} alt="Изображение курса" class="course-image">
+        <div class="course-details">
+            <p class="course-description">{{ course.description }}</p>
+            <p><strong>Длительность :{{ course.duration }}</strong> недель</p>
+            <p><strong>Цена: {{ course.price}}</strong> сом</p>
+        </div>
+       <div class="instructor-section">
+    <h2 class="instructor-name">Преподаватели:</h2>
+    {% for teacher in teachers %}
+        <div class="col-sm-6">
+            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>{{ teacher.name }}</p>
+            {% for course in teacher.courses.all %}
+                <p><a href="{% url 'course_detail' course.pk %}">{{ course.name }}</a></p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <p class="instructor-bio">Биография инструктора...</p>
+</div>
+    </div>
+
+
+{% endblock content %}
