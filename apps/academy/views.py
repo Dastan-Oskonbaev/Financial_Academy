@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
@@ -42,7 +44,8 @@ class IndexView(View):
             message = f'''Новая форма была заполнена:
 ФИО: {data['full_name']}
 Номер тел.: {data['phone_number']}
-Курсы: {data['course']}'''
+Курсы: {data['course']}
+Дата: {date.today()}'''
             send_whatsapp_notification(message)
 
             return redirect('index')
