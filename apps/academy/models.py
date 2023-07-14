@@ -101,6 +101,8 @@ class Course(models.Model):
     )
     duration = models.PositiveIntegerField(
         _('duration'),
+        null=True,
+        blank=True,
     )
     number_of_exercises = models.PositiveIntegerField(
         _('number of exercises'),
