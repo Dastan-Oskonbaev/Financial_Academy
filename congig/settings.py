@@ -148,7 +148,7 @@ TWILIO_PHONE_NUMBER = config('TWILIO_PHONE_NUMBER')
 
 JAZZMIN_SETTINGS = {
     "site_brand": "Practicum",
-    "site_logo": "img/icon_practicum2.jpg",
+    "site_logo": "img/icon_practicum.jpg",
     "show_ui_builder": False,
     "copyright": "Practicum Academy",
     "topmenu_links": [
