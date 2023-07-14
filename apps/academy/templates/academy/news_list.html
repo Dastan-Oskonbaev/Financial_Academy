@@ -13,45 +13,6 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h4 class="section-title bg-white text-center text-primary px-3">Акции</h4>
-        </div>
-        <br>
-        {% for stocks in stocks %}
-        <div class="row">
-            <div class="col-lg-6">
-                <div id="stocks-images-{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        {% for image in stocks.images.all %}
-                        <button type="button" data-bs-target="#stocks-images-{{ forloop.parentloop.counter }}"
-                                data-bs-slide-to="{{ forloop.counter0 }}"
-                                {% if forloop.first %}class="active" {% endif %}
-                                aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
-                                aria-label="{{ image.stocks.title }} {{ forloop.counter0 }}">
-                        </button>
-                        {% endfor %}
-                    </div>
-                    <div class="carousel-inner">
-                        {% for image in stocks.images.all %}
-                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img src="{{ image.images.url }}" class="d-block w-100" alt="{{ image.stocks.title }}">
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <h1 class="mb-4">{{ stocks.title }}</h1>
-                <h4 class="mb-4">{{ stocks.description }}</h4>
-                <p class="lead">{{ stocks.date }}</p>
-            </div>
-        </div>
-        <br>
-        {% endfor %}
-    </div>
-</div>
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h4 class="section-title bg-white text-center text-primary px-3">Новости</h4>
         </div>
         <br>
