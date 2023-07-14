@@ -14,6 +14,10 @@ class Contact(models.Model):
         _('Instagram'),
         max_length=100,
     )
+    tiktok = models.URLField(
+        _('TikTok'),
+        max_length=255,
+    )
     whatsapp = models.URLField(
         _('WhatsApp'),
         max_length=100,

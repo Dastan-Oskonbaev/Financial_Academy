@@ -10,13 +10,13 @@
                     <a href="{{ cont.address }}" class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> Наш Адрес </a>
                     <br>
                     <a href=" tel:{{ cont.phone_number }}" class="mb-2"><i class="fa fa-phone-alt me-3"></i>{{ cont.phone_number }}</a><br>
-                    <a href="mailto:{{ cont.email }}"class="mb-2"><i class="fa fa-envelope me-3"></i>{{cont.email}}</a><br>
+                    <a href="mailto:{{ cont.email }}" class="mb-2"><i class="fa fa-envelope me-3"></i>{{cont.email}}</a><br>
                     {% endfor %}
                 </div>
 
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Аккредитация</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p>Курсы 'Практикум' аккредитованы Кыргызским Центром Аккредитации (КЦА), обеспечивая высокий уровень обучения и признание вашего профессионального статуса.</p>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
@@ -25,6 +25,9 @@
                         <a class="btn btn-outline-light btn-social" href="{{ cont.instagram }}"><i class="fab fa-instagram"></i></a>
                         <a class="btn btn-outline-light btn-social" href="{{ cont.whatsapp }}"><i class="fab fa-whatsapp"></i></a>
                         <a class="btn btn-outline-light btn-social" href="{{ cont.telegram }}"><i class="fab fa-telegram"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="{{ cont.tiktok }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+                        </a>
                         {% endfor %}
                     </div>
                 </div>

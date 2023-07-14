@@ -19,7 +19,7 @@
         </div>
         {% if first_item %}
         <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="{% static 'img/carousel-1.jpg' %}" alt="">
+            <img class="img-fluid" src="{% static 'img/course-2.jpg' %}" alt="" style="height: 739px; weight: 1366px">
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
                 <div class="container">
                     <div class="row justify-content-start">
@@ -66,7 +66,9 @@
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                 <h6 class="section-title bg-white text-start text-primary pe-3">О Нас</h6>
                 <h1 class="mb-4">{{ about.title }}</h1>
-                <p class="mb-4">{{ about.description }}</p>
+                {% for paragraph in description %}
+                    <p class="mb-4">{{ paragraph }}</p>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -78,7 +80,7 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Курсы</h6>
-                <h1 class="mb-5">ЗДЕСЬ ТОЖЕ МОЖНО ЧТО ТО ЕЩЕ НАПИСАТЬ</h1>
+                <h1 class="mb-5">Знания без границ!</h1>
             </div>
             <div class="row g-4 justify-content-center">
                 {% for course in courses %}

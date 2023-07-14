@@ -19,13 +19,16 @@ class IndexView(View):
 
         form = RequestForm()
 
+        description = about.description.split('/')
+
         context = {
             'title': 'Главная страница',
             'teachers': teachers,
             'courses': courses,
             'contact': contact,
             'form': form,
-            'about': about
+            'about': about,
+            'description': description,
         }
 
         if len(stocks) >= 2:

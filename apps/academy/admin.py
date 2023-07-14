@@ -43,7 +43,7 @@ class NewsAdmin(admin.ModelAdmin):
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('email', 'instagram', 'telegram', 'whatsapp', 'phone_number', 'address')
+    list_display = ('email', 'instagram', 'tiktok', 'telegram', 'whatsapp', 'phone_number', 'address')
     save_on_top = True
 
 
