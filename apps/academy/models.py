@@ -9,30 +9,44 @@ class Contact(models.Model):
     email = models.EmailField(
         _('Email'),
         max_length=50,
+        null=True,
+        blank=True,
     )
     instagram = models.URLField(
         _('Instagram'),
         max_length=100,
+        null=True,
+        blank=True,
     )
     tiktok = models.URLField(
         _('TikTok'),
         max_length=255,
+        null=True,
+        blank=True,
     )
     whatsapp = models.URLField(
         _('WhatsApp'),
         max_length=100,
+        null=True,
+        blank=True,
     )
     telegram = models.URLField(
         _('Telegram'),
         max_length=100,
+        null=True,
+        blank=True,
     )
     phone_number = models.CharField(
         _('Номер тел.'),
         max_length=20,
+        null=True,
+        blank=True,
     )
     address = models.URLField(
         _('Адрес'),
         max_length=100,
+        null=True,
+        blank=True,
     )
 
     class Meta:
@@ -50,11 +64,15 @@ class Teacher(models.Model):
     )
     experience = models.TextField(
         _('Опыт'),
-        max_length=500
+        max_length=500,
+        null=True,
+        blank=True,
     )
     achievements = models.TextField(
         _('Награды'),
-        max_length=500
+        max_length=500,
+        null=True,
+        blank=True,
     )
     photo = models.ImageField(
         _('Фото'),
@@ -99,34 +117,55 @@ class Course(models.Model):
         _('Название'),
         max_length=100
     )
+    photo = models.ImageField(
+        _('Фото'),
+        upload_to='courses/',
+    )
     description = models.TextField(
         _('Описание'),
         max_length=500
     )
-    duration = models.PositiveIntegerField(
+    duration = models.CharField(
         _('Длительность (в неделях)'),
+        max_length=100,
+        null=True,
+        blank=True,
     )
-    number_of_exercises = models.PositiveIntegerField(
+    number_of_exercises = models.CharField(
         _('Количество уроков'),
+        max_length=100,
+        null=True,
+        blank=True,
     )
-    number_of_students = models.PositiveIntegerField(
+    number_of_students = models.CharField(
         _('Количество студентов'),
+        max_length=100,
+        null=True,
+        blank=True,
     )
-    price = models.PositiveIntegerField(
+    price = models.CharField(
         _('Цена'),
+        max_length=100,
+        null=True,
+        blank=True,
     )
     visiting_days = models.CharField(
         _('Дни занятий (Пн, Ср, Пт)'),
         max_length=100,
+        null=True,
+        blank=True,
     )
     visiting_time = models.CharField(
         _('Время занятий (12:00-13:00)'),
         max_length=100,
+        null=True,
+        blank=True,
     )
     is_active = models.BooleanField(
         _('Отображаемость'),
         default=True,
     )
+
 
     class Meta:
         verbose_name = _('Курс')
@@ -164,10 +203,6 @@ class News(models.Model):
     description = models.TextField(
         _('Описание'),
         max_length=500,
-    )
-    date = models.DateField(
-        _('Дата'),
-        default=timezone.now(),
     )
 
     class Meta:
@@ -221,48 +256,6 @@ class Request(models.Model):
         verbose_name_plural = _('Заявки')
 
 
-class Stocks(models.Model):
-    title = models.CharField(
-        _('Заголовок'),
-        max_length=100,
-    )
-    description = models.TextField(
-        _('Описание'),
-        max_length=500,
-    )
-    date = models.DateField(
-        _('Дата'),
-        default=timezone.now(),
-    )
-
-    class Meta:
-        verbose_name = _('Акция')
-        verbose_name_plural = _('Акции')
-
-    def __str__(self):
-        return self.title
-
-
-class StocksImages(models.Model):
-    images = models.ImageField(
-        _('Изображения'),
-        upload_to='stocks/',
-    )
-    stocks = models.ForeignKey(
-        'Stocks',
-        verbose_name=_('Акция'),
-        related_name='images',
-        on_delete=models.CASCADE,
-    )
-
-    class Meta:
-        verbose_name = _('Изображения акции')
-        verbose_name_plural = _('Изображения акции')
-
-    def __str__(self):
-        return self.stocks.title
-
-
 class AboutUs(models.Model):
     image = models.ImageField(
         _('Картинка'),
@@ -282,3 +275,25 @@ class AboutUs(models.Model):
     class Meta:
         verbose_name = _('О нас')
         verbose_name_plural = _('О нас')
+
+
+class OurServices(models.Model):
+    image = models.ImageField(
+        _('Картинка'),
+        upload_to='our_services/'
+    )
+    title = models.CharField(
+        _('Заголовок'),
+        max_length=255,
+    )
+    description = models.TextField(
+        _('Описание'),
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Наши услуги')
+        verbose_name_plural = _('Наши услуги')
+
