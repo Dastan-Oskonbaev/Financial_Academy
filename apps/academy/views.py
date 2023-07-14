@@ -3,7 +3,7 @@ from datetime import date
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
-from apps.academy.models import Teacher, Course, Contact, News, TeachersImages, Stocks, AboutUs
+from apps.academy.models import Teacher, Course, Contact, News, TeachersImages, AboutUs, OurServices
 from .forms import RequestForm
 from .sender import send_whatsapp_notification
 
@@ -13,13 +13,12 @@ class IndexView(View):
         teachers = Teacher.objects.all()
         courses = Course.objects.all()
         contact = Contact.objects.all()
-        about = AboutUs.objects.first()
-        stocks = Stocks.objects.all()[::-1]
-        news = News.objects.all()[::-1]
+        about = AboutUs.objects.all()
+        services = OurServices.objects.all()
+        news = News.objects.all()
 
         form = RequestForm()
 
-        description = about.description.split('/')
 
         context = {
             'title': 'Главная страница',
@@ -28,13 +27,9 @@ class IndexView(View):
             'contact': contact,
             'form': form,
             'about': about,
-            'description': description,
+            'services': services,
         }
-
-        if len(stocks) >= 2:
-            context['first_item'] = stocks[0]
-            context['second_item'] = stocks[1]
-        elif len(news) >= 2:
+        if len(news) >= 2:
             context['first_item'] = news[0]
             context['second_item'] = news[1]
 
@@ -108,12 +103,10 @@ class NewsListView(View):
         news = News.objects.all()
         contact = Contact.objects.all()
         form = RequestForm()
-        stocks = Stocks.objects.all()
         context = {
             'title': 'Список новостей',
             'news': news,
             'contact': contact,
             'form': form,
-            'stocks': stocks,
         }
         return render(request, 'academy/news_list.html', context)
