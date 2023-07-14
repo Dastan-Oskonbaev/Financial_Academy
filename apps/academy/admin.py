@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
 
 from apps.academy.models import TeachersImages, CourseImages, NewsImages, Teacher, Course, News, Contact, Request, \
-    Stocks, StocksImages, AboutUs
+     AboutUs, OurServices
 
 
 class TeachersImagesInline(admin.TabularInline):
@@ -38,7 +37,7 @@ class NewsImagesInline(admin.TabularInline):
 class NewsAdmin(admin.ModelAdmin):
     inlines = [NewsImagesInline]
     save_on_top = True
-    list_display = ('title', 'description', 'date')
+    list_display = ('title', 'description',)
 
 
 @admin.register(Contact)
@@ -53,19 +52,13 @@ class RequestAdmin(admin.ModelAdmin):
     readonly_fields = ('full_name', 'phone_number', 'course')
 
 
-class StocksImagesInline(admin.TabularInline):
-    model = StocksImages
-    extra = 1
-
-
-@admin.register(Stocks)
-class StocksAdmin(admin.ModelAdmin):
-    inlines = [StocksImagesInline]
-    save_on_top = True
-    list_display = ('title', 'description', 'date')
-
-
 @admin.register(AboutUs)
 class AboutUsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'image')
+    search_fields = ('title',)
+
+
+@admin.register(OurServices)
+class OurServicesAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'image')
     search_fields = ('title',)
