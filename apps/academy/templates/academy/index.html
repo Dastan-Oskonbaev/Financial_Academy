@@ -66,9 +66,7 @@
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                 <h6 class="section-title bg-white text-start text-primary pe-3">О Нас</h6>
                 <h1 class="mb-4">{{ about.title }}</h1>
-                {% for paragraph in description %}
-                    <p class="mb-4">{{ paragraph }}</p>
-                {% endfor %}
+                <p class="mb-4">{% for paragraph in description %}{{ paragraph }}<br>{% endfor %}</p>
             </div>
         </div>
     </div>
