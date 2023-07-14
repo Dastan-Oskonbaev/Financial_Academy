@@ -57,11 +57,15 @@
             color: #333;
         }
 
-        .instructor-section {
-            background-color: #f9f9f9;
-            padding: 30px;
-            text-align: center;
-        }
+         .instructor-section {
+        /* Updated styles */
+        background-color: #f9f9f9;
+        padding: 30px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
         .instructor-name {
             color: #6c63ff;
@@ -74,30 +78,89 @@
             line-height: 1.6;
             margin-top: 10px;
         }
+        .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    max-width: 60%;
+    max-height: 80%;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
     </style>
+<script>
+    // JavaScript код
+document.addEventListener('DOMContentLoaded', function() {
+    var imageWrappers = document.querySelectorAll('.image-wrapper');
+    var modalOverlays = document.querySelectorAll('.modal-overlay');
+
+    imageWrappers.forEach(function(wrapper, index) {
+        wrapper.addEventListener('click', function() {
+            modalOverlays[index].classList.toggle('active');
+        });
+    });
+});
+
+</script>
+
     <div class="course-container">
         <div class="course-header">
             <h1 class="course-title">{{ course.name}}</h1>
         </div>
-        <img src={{ course.images.first.images.url }} alt="Изображение курса" class="course-image">
+        <img src="{{ course.images.first.images.url }}" alt="Изображение курса" class="course-image">
         <div class="course-details">
-            <p class="course-description">{{ course.description }}</p>
-            <p><strong>Длительность :{{ course.duration }}</strong> недель</p>
+            <p class="course-description"><strong>Описание курса : </strong>{{ course.description }}</p>
+            <p><strong>Длительность : {{ course.duration }}</strong> недель</p>
+            <p><strong>Количество занятий: {{ course.number_of_exercises}}</strong> </p>
+            <p><strong>Количество студентов на курсе: {{ course.number_of_students}}</strong> </p>
+            <p><strong>Дни посещения: {{ course.visiting_days}}</strong> </p>
+            <p><strong>Время посещения: {{ course.visiting_time}}</strong></p>
             <p><strong>Цена: {{ course.price}}</strong> сом</p>
         </div>
-       <div class="instructor-section">
-    <h2 class="instructor-name">Преподаватели:</h2>
-    {% for teacher in teachers %}
+     <div class="instructor-section">
+        <h2 class="instructor-name">Преподаватели:</h2>
         <div class="col-sm-6">
-            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>{{ teacher.name }}</p>
-            {% for course in teacher.courses.all %}
-                <p><a href="{% url 'course_detail' course.pk %}">{{ course.name }}</a></p>
+            {% for teacher in course.teachers.all %}
+                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>{{ teacher.full_name }}</p>
             {% endfor %}
         </div>
-    {% endfor %}
-    <p class="instructor-bio">Биография инструктора...</p>
-</div>
     </div>
+</div>
+        <div class="row justify-content-center">
+    {% for image in course.images.all %}
+    <div class="col-sm-4">
+        <div class="image-wrapper">
+            <img src="{{ image.images.url }}" class="img-fluid" alt="{{ image.course.name }}">
+            <div class="modal-overlay">
+                <div class="modal-content">
+                    <img src="{{ image.images.url }}" class="modal-image" alt="{{ image.couse.name }}">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 
 
 {% endblock content %}

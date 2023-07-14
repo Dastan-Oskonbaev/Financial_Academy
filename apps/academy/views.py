@@ -72,12 +72,14 @@ class CourseDetailView(View):
     def get(self, request, course_id):
         course = get_object_or_404(Course, id=course_id)
         contact = Contact.objects.all()
+        teacher = Teacher.objects.all()
         form = RequestForm()
         context = {
             'title': f'{course.name} - курс',
             'course': course,
             'contact': contact,
             'form': form,
+            'teacher': teacher,
         }
         return render(request, 'academy/course_detail.html', context)
 
