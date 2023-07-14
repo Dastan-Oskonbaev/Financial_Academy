@@ -17,11 +17,7 @@ class IndexView(View):
         services = OurServices.objects.first()
         news = News.objects.all()
 
-
         form = RequestForm()
-        description = about.description.split("/")
-        service = services.description.split("/")
-
 
         context = {
             'title': 'Главная страница',
@@ -31,12 +27,16 @@ class IndexView(View):
             'form': form,
             'about': about,
             'services': services,
-            'description': description,
-            'service': service,
+            'news': news,
         }
-        if len(news) >= 2:
-            context['first_item'] = news[0]
-            context['second_item'] = news[1]
+
+        if about:
+            description = about.description.split("/")
+            context['description'] = description
+
+        if services:
+            service = services.description.split("/")
+            context['service'] = service
 
         return render(request, 'academy/index.html', context)
 
