@@ -7,33 +7,33 @@ from django.utils.translation import gettext_lazy as _
 
 class Contact(models.Model):
     email = models.EmailField(
-        _('email'),
+        _('Email'),
         max_length=50,
     )
     instagram = models.URLField(
-        _('instagram'),
+        _('Instagram'),
         max_length=100,
     )
     whatsapp = models.URLField(
-        _('whatsapp'),
+        _('WhatsApp'),
         max_length=100,
     )
     telegram = models.URLField(
-        _('telegram'),
+        _('Telegram'),
         max_length=100,
     )
     phone_number = models.CharField(
-        _('phone number'),
+        _('Номер тел.'),
         max_length=20,
     )
     address = models.URLField(
-        _('address'),
+        _('Адрес'),
         max_length=100,
     )
 
     class Meta:
-        verbose_name = _('Contact')
-        verbose_name_plural = _('Contacts')
+        verbose_name = _('Контакт')
+        verbose_name_plural = _('Контакты')
 
     def __str__(self):
         return self.email
@@ -41,30 +41,30 @@ class Contact(models.Model):
 
 class Teacher(models.Model):
     full_name = models.CharField(
-        _('full name'),
+        _('ФИО'),
         max_length=100,
     )
     experience = models.TextField(
-        _('experience'),
+        _('Опыт'),
         max_length=500
     )
     achievements = models.TextField(
-        _('achievements'),
+        _('Награды'),
         max_length=500
     )
     photo = models.ImageField(
-        _('photo'),
+        _('Фото'),
         upload_to='teachers/',
     )
     courses = models.ManyToManyField(
         'Course',
-        verbose_name=_('courses'),
+        verbose_name=_('Курсы'),
         related_name='teachers',
     )
 
     class Meta:
-        verbose_name = _('Teacher')
-        verbose_name_plural = _('Teachers')
+        verbose_name = _('Преподаватель')
+        verbose_name_plural = _('Преподаватели')
 
     def __str__(self):
         return self.full_name
@@ -72,19 +72,19 @@ class Teacher(models.Model):
 
 class TeachersImages(models.Model):
     images = models.ImageField(
-        _('images'),
+        _('Изображения'),
         upload_to='teachers_images/',
     )
     teacher = models.ForeignKey(
         'Teacher',
-        verbose_name=_('teacher'),
+        verbose_name=_('Преподаватель'),
         related_name='images',
         on_delete=models.CASCADE,
     )
 
     class Meta:
-        verbose_name = _('Teacher image')
-        verbose_name_plural = _('Teacher images')
+        verbose_name = _('Изображения преподавателя')
+        verbose_name_plural = _('Изображения преподавателей')
 
     def __str__(self):
         return self.teacher.full_name
@@ -92,41 +92,41 @@ class TeachersImages(models.Model):
 
 class Course(models.Model):
     name = models.CharField(
-        _('name'),
+        _('Название'),
         max_length=100
     )
     description = models.TextField(
-        _('description'),
+        _('Описание'),
         max_length=500
     )
     duration = models.PositiveIntegerField(
-        _('duration'),
+        _('Длительность (в неделях)'),
     )
     number_of_exercises = models.PositiveIntegerField(
-        _('number of exercises'),
+        _('Количество уроков'),
     )
     number_of_students = models.PositiveIntegerField(
-        _('number of students'),
+        _('Количество студентов'),
     )
     price = models.PositiveIntegerField(
-        _('price'),
+        _('Цена'),
     )
     visiting_days = models.CharField(
-        _('visiting days'),
+        _('Дни занятий (Пн, Ср, Пт)'),
         max_length=100,
     )
     visiting_time = models.CharField(
-        _('visiting time'),
+        _('Время занятий (12:00-13:00)'),
         max_length=100,
     )
     is_active = models.BooleanField(
-        default=False
+        _('Отображаемость'),
+        default=True,
     )
 
-
     class Meta:
-        verbose_name = _('Course')
-        verbose_name_plural = _('Courses')
+        verbose_name = _('Курс')
+        verbose_name_plural = _('Курсы')
 
     def __str__(self):
         return self.name
@@ -134,19 +134,19 @@ class Course(models.Model):
 
 class CourseImages(models.Model):
     images = models.ImageField(
-        _('images'),
+        _('Изображения'),
         upload_to='courses/',
     )
     course = models.ForeignKey(
         'Course',
-        verbose_name=_('course'),
+        verbose_name=_('Курс'),
         related_name='images',
         on_delete=models.CASCADE,
     )
 
     class Meta:
-        verbose_name = _('Course image')
-        verbose_name_plural = _('Course images')
+        verbose_name = _('Изображения курса')
+        verbose_name_plural = _('Изображения курсов')
 
     def __str__(self):
         return self.course.name
@@ -154,21 +154,21 @@ class CourseImages(models.Model):
 
 class News(models.Model):
     title = models.CharField(
-        _('title'),
+        _('Заголовок'),
         max_length=100,
     )
     description = models.TextField(
-        _('description'),
+        _('Описание'),
         max_length=500,
     )
     date = models.DateField(
-        _('Date'),
+        _('Дата'),
         default=timezone.now(),
     )
 
     class Meta:
-        verbose_name = _('News')
-        verbose_name_plural = _('News')
+        verbose_name = _('Новость')
+        verbose_name_plural = _('Новости')
 
     def __str__(self):
         return self.title
@@ -176,19 +176,19 @@ class News(models.Model):
 
 class NewsImages(models.Model):
     images = models.ImageField(
-        _('images'),
+        _('Изображения'),
         upload_to='news/',
     )
     news = models.ForeignKey(
         'News',
-        verbose_name=_('news'),
+        verbose_name=_('Новость'),
         related_name='images',
         on_delete=models.CASCADE,
     )
 
     class Meta:
-        verbose_name = _('News image')
-        verbose_name_plural = _('News images')
+        verbose_name = _('Изображения новости')
+        verbose_name_plural = _('Изображения новостей')
 
     def __str__(self):
         return self.news.title
@@ -196,16 +196,16 @@ class NewsImages(models.Model):
 
 class Request(models.Model):
     full_name = models.CharField(
-        _('Full name'),
+        _('ФИО'),
         max_length=255,
     )
     phone_number = models.CharField(
-        _('Phone number'),
+        _('Номер тел.'),
         max_length=255,
     )
     course = models.ForeignKey(
         Course,
-        verbose_name=_('Course'),
+        verbose_name=_('Курс'),
         on_delete=models.CASCADE,
     )
 
@@ -213,27 +213,27 @@ class Request(models.Model):
         return f'{self.full_name}'
 
     class Meta:
-        verbose_name = _('Request')
-        verbose_name_plural = _('Requests')
+        verbose_name = _('Заявка')
+        verbose_name_plural = _('Заявки')
 
 
 class Stocks(models.Model):
     title = models.CharField(
-        _('title'),
+        _('Заголовок'),
         max_length=100,
     )
     description = models.TextField(
-        _('description'),
+        _('Описание'),
         max_length=500,
     )
     date = models.DateField(
-        _('Date'),
+        _('Дата'),
         default=timezone.now(),
     )
 
     class Meta:
-        verbose_name = _('Stock')
-        verbose_name_plural = _('Stocks')
+        verbose_name = _('Акция')
+        verbose_name_plural = _('Акции')
 
     def __str__(self):
         return self.title
@@ -241,19 +241,40 @@ class Stocks(models.Model):
 
 class StocksImages(models.Model):
     images = models.ImageField(
-        _('images'),
+        _('Изображения'),
         upload_to='stocks/',
     )
     stocks = models.ForeignKey(
         'Stocks',
-        verbose_name=_('Stocks'),
+        verbose_name=_('Акция'),
         related_name='images',
         on_delete=models.CASCADE,
     )
 
     class Meta:
-        verbose_name = _('Stock image')
-        verbose_name_plural = _('Stocks images')
+        verbose_name = _('Изображения акции')
+        verbose_name_plural = _('Изображения акции')
 
     def __str__(self):
         return self.stocks.title
+
+
+class AboutUs(models.Model):
+    image = models.ImageField(
+        _('Картинка'),
+        upload_to='about/'
+    )
+    title = models.CharField(
+        _('Заголовок'),
+        max_length=255,
+    )
+    description = models.TextField(
+        _('Описание'),
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('О нас')
+        verbose_name_plural = _('О нас')

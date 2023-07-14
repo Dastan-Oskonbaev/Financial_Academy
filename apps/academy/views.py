@@ -3,7 +3,7 @@ from datetime import date
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
-from apps.academy.models import Teacher, Course, Contact, News, TeachersImages, Stocks
+from apps.academy.models import Teacher, Course, Contact, News, TeachersImages, Stocks, AboutUs
 from .forms import RequestForm
 from .sender import send_whatsapp_notification
 
@@ -13,6 +13,7 @@ class IndexView(View):
         teachers = Teacher.objects.all()
         courses = Course.objects.all()
         contact = Contact.objects.all()
+        about = AboutUs.objects.first()
         stocks = Stocks.objects.all()[::-1]
         news = News.objects.all()[::-1]
 
@@ -24,6 +25,7 @@ class IndexView(View):
             'courses': courses,
             'contact': contact,
             'form': form,
+            'about': about
         }
 
         if len(stocks) >= 2:
