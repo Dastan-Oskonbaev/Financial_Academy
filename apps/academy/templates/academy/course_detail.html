@@ -127,17 +127,17 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="course-header">
             <h1 class="course-title">{{ course.name}}</h1>
         </div>
-        <img src="{{ course.images.first.images.url }}" alt="Изображение курса" class="course-image">
+        <img src="{{ course.photo.url }}" alt="Изображение курса" class="course-image">
         <div class="course-details">
             <p class="course-description"><strong>Описание курса : </strong>{{ course.description }}</p>
             {% if course.duration %}
-            <p><strong>Длительность : {{ course.duration }}</strong> недель</p>
+            <p><strong>Длительность : {{ course.duration }}</strong> </p>
             {% endif %}
             <p><strong>Количество занятий: {{ course.number_of_exercises}}</strong> </p>
             <p><strong>Количество студентов на курсе: {{ course.number_of_students}}</strong> </p>
             <p><strong>Дни посещения: {{ course.visiting_days}}</strong> </p>
             <p><strong>Время посещения: {{ course.visiting_time}}</strong></p>
-            <p><strong>Цена: {{ course.price}}</strong> сом</p>
+            <p><strong>Цена: {{ course.price}}</strong></p>
         </div>
      <div class="instructor-section">
         <h2 class="instructor-name">Преподаватели:</h2>
