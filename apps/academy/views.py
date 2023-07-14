@@ -13,11 +13,14 @@ class IndexView(View):
         teachers = Teacher.objects.all()
         courses = Course.objects.all()
         contact = Contact.objects.all()
-        about = AboutUs.objects.all()
-        services = OurServices.objects.all()
+        about = AboutUs.objects.first()
+        services = OurServices.objects.first()
         news = News.objects.all()
 
+
         form = RequestForm()
+        description = about.description.split("/")
+        service = services.description.split("/")
 
 
         context = {
@@ -28,6 +31,8 @@ class IndexView(View):
             'form': form,
             'about': about,
             'services': services,
+            'description': description,
+            'service': service,
         }
         if len(news) >= 2:
             context['first_item'] = news[0]
