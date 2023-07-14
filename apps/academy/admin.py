@@ -47,11 +47,6 @@ class ContactAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
-@admin.register(TeachersImages)
-class TeachersImagesAdmin(admin.ModelAdmin):
-    list_display = ('teacher', 'images')
-
-
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'phone_number', 'course')
