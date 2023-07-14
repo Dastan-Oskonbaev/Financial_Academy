@@ -130,7 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <img src="{{ course.images.first.images.url }}" alt="Изображение курса" class="course-image">
         <div class="course-details">
             <p class="course-description"><strong>Описание курса : </strong>{{ course.description }}</p>
+            {% if course.duration %}
             <p><strong>Длительность : {{ course.duration }}</strong> недель</p>
+            {% endif %}
             <p><strong>Количество занятий: {{ course.number_of_exercises}}</strong> </p>
             <p><strong>Количество студентов на курсе: {{ course.number_of_students}}</strong> </p>
             <p><strong>Дни посещения: {{ course.visiting_days}}</strong> </p>
