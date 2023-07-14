@@ -13,8 +13,8 @@ class IndexView(View):
         teachers = Teacher.objects.all()
         courses = Course.objects.all()
         contact = Contact.objects.all()
-        about = AboutUs.objects.first()
-        services = OurServices.objects.first()
+        about = AboutUs.objects.all().first()
+        services = OurServices.objects.all().first()
         news = News.objects.all()
 
         form = RequestForm()
