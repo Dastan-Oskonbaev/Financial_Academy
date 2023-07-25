@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title%}Новости{% endblock title %}
+{% block title%}Новости о курсах бухгалтерии - Практикум{% endblock title %}
 
 {% block content %}
 <style>
@@ -9,12 +9,12 @@
         height: 350px;
         object-fit: cover;
     }
+
 </style>
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h4 class="section-title bg-white text-center text-primary px-3">Новости</h4>
-        </div>
+            <h4 class="section-title bg-white text-center text-primary px-3">Новости о курсах бухгалтерии</h4></div>
         <br>
         {% for news in news %}
         <div class="row">
@@ -33,14 +33,14 @@
                     <div class="carousel-inner">
                         {% for image in news.images.all %}
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img src="{{ image.images.url }}" class="d-block w-100" alt="{{ image.news.title }}">
+                            <img src="{{ image.images.url }}" class="d-block w-100" alt="{{ image.news.title }} изображение {{ forloop.counter0 }}">
                         </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <h1 class="mb-4">{{ news.title }}</h1>
+                <h1 class="mb-4">{{ news.title }} - Новости курсов бухгалтерии</h1>
                 <h4 class="mb-4">{{ news.description }}</h4>
                 <p class="lead">{{ news.date }}</p>
             </div>

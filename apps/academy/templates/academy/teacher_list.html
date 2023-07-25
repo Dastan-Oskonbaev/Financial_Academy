@@ -22,7 +22,7 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title bg-white text-center text-primary px-3">Преподаватели</h6>
+            <h6 class="section-title bg-white text-center text-primary px-3">Преподаватели курсов по бухгалтерии</h6>
             <h1 class="mb-5">Преподавательский состав</h1>
         </div>
         <div class="row justify-content-center">
@@ -30,10 +30,10 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="team-item bg-light d-flex flex-column align-items-center">
                     <div class="overflow-hidden">
-                        <a href="{% url 'teacher_detail' teacher.pk %}"><img class="img-fluid" src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }}"></a>
+                        <a href="{% url 'teacher_detail' teacher.pk %}"><img class="img-fluid" src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }} - Преподаватель курсов бухгалтерии"></a>
                     </div>
                     <div class="text-center p-4">
-                        <h5 class="mb-0"><a href="{% url 'teacher_detail' teacher.pk %}">{{ teacher.full_name }}</a></h5>
+                        <h5 class="mb-0"><a href="{% url 'teacher_detail' teacher.pk %}">{{ teacher.full_name }} - Преподаватель курсов бухгалтерии</a></h5>
                         <small>
                             {% for course in teacher.courses.all %}
                                 <span class="badge bg-primary">{{ course.name }}</span>
