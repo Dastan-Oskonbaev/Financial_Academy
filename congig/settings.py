@@ -193,5 +193,7 @@ JAZZMIN_UI_TWEAKS = {
     "actions_sticky_top": False
 }
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 with contextlib.suppress(ImportError):
     from .local_settings import *
