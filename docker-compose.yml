@@ -25,8 +25,8 @@ services:
     command: gunicorn --workers=4 site_project.wsgi:application --bind 0.0.0.0:8000
     restart: always
     volumes:
-      - static_volume:/home/app/web/staticfiles
-      - media_volume:/home/app/web/mediafiles
+      - static_volume:/home/Financial_Academy/staticfiles
+      - media_volume:/home/Financial_Academy/mediafiles
     expose:
       - "8000"
     env_file:
