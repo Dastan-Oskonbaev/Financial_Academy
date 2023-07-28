@@ -8,5 +8,9 @@ WORKDIR /app
 ADD . /app
 # Запускает команду pip install для всех библиотек, перечисленных в requirements.txt
 RUN pip install -r requirements.txt
+# Установка Gunicorn
+RUN pip install gunicorn
 # Запускает команду makemigrations для создания файлов миграции на основе изменений в моделях
 RUN python manage.py makemigrations
+# Команда для запуска Gunicorn
+CMD ["gunicorn", "--workers=4", "congig.wsgi:application", "--bind", "0.0.0.0:8000"]
