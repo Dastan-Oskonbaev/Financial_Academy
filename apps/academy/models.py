@@ -64,13 +64,11 @@ class Teacher(models.Model):
     )
     experience = models.TextField(
         _('Опыт'),
-        max_length=500,
         null=True,
         blank=True,
     )
     achievements = models.TextField(
         _('Награды'),
-        max_length=500,
         null=True,
         blank=True,
     )
@@ -123,7 +121,6 @@ class Course(models.Model):
     )
     description = models.TextField(
         _('Описание'),
-        max_length=500
     )
     duration = models.CharField(
         _('Длительность (в неделях)'),
@@ -202,7 +199,6 @@ class News(models.Model):
     )
     description = models.TextField(
         _('Описание'),
-        max_length=500,
     )
 
     class Meta:

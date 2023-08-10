@@ -70,6 +70,11 @@ class TeacherDetailView(View):
             'contact': contact,
             'form': form,
         }
+        if teacher:
+            experience = teacher.experience.split('/')
+            achievements = teacher.achievements.split('/')
+            context['experience'] = experience
+            context['achievements'] = achievements
         return render(request, 'academy/teacher_detail.html', context)
 
 
@@ -86,6 +91,10 @@ class CourseDetailView(View):
             'form': form,
             'teacher': teacher,
         }
+        if course:
+            description = course.description.split('/')
+            context['description'] = description
+
         return render(request, 'academy/course_detail.html', context)
 
 

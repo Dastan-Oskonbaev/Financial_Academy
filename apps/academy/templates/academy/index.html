@@ -55,31 +55,34 @@
 </div>
 
 <!-- About End -->
-<!-- Testimonial Start -->
-<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="container">
+<!-- News Start -->
+<section class="section section-lg bg-default">
+<div class="container">
+    <div class="row">
         <div class="text-center">
             <h6 class="section-title bg-white text-center text-primary px-3">Новости</h6>
             <h1 class="mb-5">Будь всегда в курсе!</h1>
         </div>
-        <div class="owl-carousel testimonial-carousel position-relative">
-            {% for news in news %}
-            <div class="testimonial-item text-center">
-                <a href="{% url 'news_list' %}">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="{{ news.images.first.images.url }}" style="width: 200px; height: 200px;">
-                    <h5 class="mb-0">{{ news.title }}</h5>
-                </a>
-                <p>{{ news.date }}</p>
-                <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0" style="height: 150px;">{{ news.description }}</p>
+        {% for news in news %}
+        <div class="col-lg-10 col-xl-8">
+            <a href="{% url 'news_list' %}">
+            <div class="row row-30">
+                <div class="col-md-6">
+                    <img src="{{ news.images.first.images.url }}" alt="" width="350" height="150"/>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ news.title }}</p>
+                    <p>{{ news.description }}</p>
+                    <p>{{ news.date }}</p>
                 </div>
             </div>
-            {% endfor %}
+            </a>
         </div>
+        {% endfor %}
     </div>
 </div>
-
-<!-- Testimonial End -->
+</section>
+<!-- News End -->
 <!-- Courses Start -->
 <section id="courses">
     <div class="container-xxl py-5">

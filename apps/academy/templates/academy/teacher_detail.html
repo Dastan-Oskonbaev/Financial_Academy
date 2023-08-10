@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                 <h6 class="section-title bg-white text-start text-primary pe-3">О Преподавателе</h6>
                 <h1 class="mb-4">{{ teacher.full_name}}</h1>
-                <p class="mb-4"> {{ teacher.experience }}</p>
-                <p class="mb-4"> {{ teacher.achievements }}</p>
+		<p class="mb-4"> {% for p in experience %}{{p}}<br>{% endfor %}</p>
+		<p class="mb-4"> {% for p in achievements %}{{p}}<br>{% endfor %}</p>
                 <div class="row gy-2 gx-4 mb-4">
                     {% for course in teacher.courses.all %}
                     <div class="col-sm-6">

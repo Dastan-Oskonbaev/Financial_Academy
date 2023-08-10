@@ -113,7 +113,7 @@
         </div>
         <img src="{{ course.photo.url }}" alt="Изображение курса" class="course-image">
         <div class="course-details">
-            <p class="course-description"><strong>Описание курса:</strong> {{ course.description }}</p>
+		<p class="course-description"><strong>Описание курса:</strong>{% for p in description %}{{p}}<br>{% endfor %}</p>
             {% if course.duration %}
                 <p><strong>Длительность:</strong> {{ course.duration }}</p>
             {% endif %}
