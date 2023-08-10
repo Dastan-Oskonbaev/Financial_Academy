@@ -56,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'congig.middleware.Custom404Middleware',
 ]
 
 ROOT_URLCONF = 'congig.urls'
@@ -128,13 +129,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/home/Financial_Academy/staticfiles/'
+# STATIC_URL = '/home/Financial_Academy/staticfiles/'
 #STATICFILES_DIRS = [BASE_DIR/"staticfiles"]
-STATIC_ROOT = './staticfiles'
+# STATIC_ROOT = './staticfiles'
 
-MEDIA_URL = '/home/Financial_Academy/media/'
-MEDIA_ROOT = './media'
+# MEDIA_URL = '/home/Financial_Academy/media/'
+# MEDIA_ROOT = './media'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -191,11 +199,11 @@ JAZZMIN_UI_TWEAKS = {
     "actions_sticky_top": False
 }
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_DOMAIN = 'practicumkg.com'
-CSRF_TRUSTED_ORIGINS = ['https://practicumkg.com']
+# CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_DOMAIN = 'practicumkg.com'
+# CSRF_TRUSTED_ORIGINS = ['https://practicumkg.com']
 
 with contextlib.suppress(ImportError):
     from .local_settings import *
