@@ -1,50 +1,66 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Teacher List{% endblock title %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Teacher List{%endblock title %} 
 {% block content %}
 <style>
-    .team-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .team-item .overflow-hidden {
-        width: 250px;
-        height: 400px;  /* Adjust the desired height */
-    }
-    .team-item .overflow-hidden img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+  .team-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .team-item .overflow-hidden {
+    width: 250px;
+    height: 400px; /* Adjust the desired height */
+  }
+  .team-item .overflow-hidden img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .course-name {
+    width: 250px;
+    white-space: wrap; 
+    text-overflow: unset;
+    text-align: center;
+    margin-top: 1rem;
+  }
 </style>
 <!-- Team Start -->
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title bg-white text-center text-primary px-3">Преподаватели курсов по бухгалтерии</h6>
-            <h1 class="mb-5">Преподавательский состав</h1>
-        </div>
-        <div class="row justify-content-center">
-            {% for teacher in teachers %}
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="team-item bg-light d-flex flex-column align-items-center">
-                    <div class="overflow-hidden">
-                        <a href="{% url 'teacher_detail' teacher.pk %}"><img class="img-fluid" src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }} - Преподаватель курсов бухгалтерии"></a>
-                    </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-0"><a href="{% url 'teacher_detail' teacher.pk %}">{{ teacher.full_name }} - Преподаватель курсов бухгалтерии</a></h5>
-                        <small>
-                            {% for course in teacher.courses.all %}
-                                <span class="badge bg-primary">{{ course.name }}</span>
-                            {% endfor %}
-                        </small>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+<div class="container-xxl py-5 mw-100 mw-100" >
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title bg-white text-center text-primary px-3">
+        Преподаватели курсов по бухгалтерии
+      </h6>
+      <h1 class="mb-5">Преподавательский состав</h1>
     </div>
+    <div class="row justify-content-center">
+      {% for teacher in teachers %}
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 overflow-hidden mw-100 mw-100">
+        <div class="team-item bg-light d-flex flex-column align-items-center">
+          <div class="overflow-hidden mw-100 mw-100"> <!-- Добавляем классы w-100 и h-100 -->
+            <a href="{% url 'teacher_detail' teacher.pk %}">
+              <img class="img-fluid" src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }} - Преподаватель курсов бухгалтерии" />
+            </a>
+          </div>
+          <div class="text-center p-4">
+            <h5 class="mb-0">
+              <a href="{% url 'teacher_detail' teacher.pk %}">
+                {{ teacher.full_name }} - Преподаватель курсов бухгалтерии
+              </a>
+            </h5>
+            <span>
+              {% for course in teacher.courses.all %}
+                <span class="badge bg-primary course-name">{{ course.name }}</span>
+              {% endfor %}
+            </span>
+          </div>
+        </div>
+      </div>      
+      {% endfor %}
+    </div>
+  </div>
 </div>
 <!-- Team End -->
 
