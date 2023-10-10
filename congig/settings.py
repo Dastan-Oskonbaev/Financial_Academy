@@ -38,6 +38,8 @@ MY_APPS = [
 
 THIRD_PARTY_APPS = []
 
+SITE_ID = 1
+
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
@@ -46,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ] + MY_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
