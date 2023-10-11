@@ -2,6 +2,23 @@
 {% load static %}
 {% block title %}Курсы бухгалтерии в Практикуме - Получите знания и навыки{% endblock title %}
 {% block content %}
+
+
+<style>
+.course-name {
+    width: 250px;
+    white-space: wrap; 
+    text-overflow: unset;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .news-img {
+    width: 30vw;
+    height: 45vh;
+  }
+</style>
+
 <!-- Carousel Start -->
 <div class="container-fluid p-0 mb-5">
     <div class="owl-carousel header-carousel position-relative">
@@ -57,30 +74,35 @@
 <!-- About End -->
 <!-- News Start -->
 <section class="section section-lg bg-default">
-<div class="container">
-    <div class="row">
+    <div class="container">
         <div class="text-center">
             <h6 class="section-title bg-white text-center text-primary px-3">Новости</h6>
             <h1 class="mb-5">Будь всегда в курсе!</h1>
         </div>
+
         {% for news in news %}
-        <div class="col-lg-10 col-xl-8">
-            <a href="{% url 'news_list' %}">
-            <div class="row row-30">
-                <div class="col-md-6">
-                    <img src="{{ news.images.first.images.url }}" alt="" width="350" height="150"/>
-                </div>
-                <div class="col-md-6">
-                    <p>{{ news.title }}</p>
-                    <p>{{ news.description }}</p>
-                    <p>{{ news.date }}</p>
-                </div>
+        <div class="row gap-200">
+            <div class="col-md-3">
+                <img src="{{ news.images.first.images.url }}" alt="" class="news-img img-fluid" style="max-height: 400px;" />
             </div>
-            </a>
+            <div class="col-md-9">
+                <a href="{% url 'news_list' %}">
+                    <p>{{ news.title }}</p>
+                    <p>{{ news.date }}</p>
+                    {% for description_list in descriptions %}
+                    <div style="max-height: 400px; overflow: hidden;">
+                        <ul style="list-style: none;">
+                            {% for description in description_list %}
+                            <li class="text-ellipsis">{{ description }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </a>
+            </div>
         </div>
         {% endfor %}
     </div>
-</div>
 </section>
 <!-- News End -->
 <!-- Courses Start -->
@@ -131,7 +153,7 @@
         <div class="row justify-content-center">
             {% for teacher in teachers %}
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="team-item bg-light d-flex flex-column align-items-center">
+                <div class="team-item bg-light d-flex flex-column align-items-center w-100 h-100"> <!-- Добавляем классы w-100 и h-100 -->
                     <div class="overflow-hidden">
                         <a href="{% url 'teacher_detail' teacher.pk %}"><img class="img-fluid" src="{{ teacher.photo.url }}" alt="{{ teacher.full_name }}"></a>
                     </div>
@@ -139,7 +161,7 @@
                         <h5 class="mb-0"><a href="{% url 'teacher_detail' teacher.pk %}">{{ teacher.full_name }}</a></h5>
                         <small>
                             {% for course in teacher.courses.all %}
-                                <span class="badge bg-primary">{{ course.name }}</span>
+                                <span class="badge bg-primary course-name">{{ course.name }}</span>
                             {% endfor %}
                         </small>
                     </div>

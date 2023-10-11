@@ -4,4 +4,5 @@ python-decouple==3.8
 twilio==8.4.0
 django-jazzmin==2.6.0
 psycopg2-binary==2.9.6
+django-smtp-ssl==1.0
 

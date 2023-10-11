@@ -25,7 +25,7 @@ class CourseImagesInline(admin.TabularInline):
 class CourseAdmin(admin.ModelAdmin):
     inlines = [CourseImagesInline]
     save_on_top = True
-    list_display = ('name', 'description', 'price', 'duration', 'visiting_time', 'visiting_days', 'is_active')
+    list_display = ('name', 'price', 'duration', 'visiting_time', 'visiting_days', 'is_active')
 
 
 class NewsImagesInline(admin.TabularInline):

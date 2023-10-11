@@ -5,7 +5,7 @@ from django.views import View
 
 from apps.academy.models import Teacher, Course, Contact, News, TeachersImages, AboutUs, OurServices
 from .forms import RequestForm
-from .sender import send_whatsapp_notification
+from .sender import send_email
 
 
 class IndexView(View):
@@ -38,6 +38,9 @@ class IndexView(View):
             service = services.description.split("/")
             context['service'] = service
 
+        descriptions = [item.description.split('/') for item in news]
+        context['descriptions'] = descriptions
+
         return render(request, 'academy/index.html', context)
 
     def post(self, request):
@@ -47,11 +50,11 @@ class IndexView(View):
 
             data = form.cleaned_data
             message = f'''Новая форма была заполнена:
-ФИО: {data['full_name']}
-Номер тел.: {data['phone_number']}
-Курсы: {data['course']}
-Дата: {date.today()}'''
-            send_whatsapp_notification(message)
+            ФИО: {data['full_name']}
+            Номер тел.: {data['phone_number']}
+            Курсы: {data['course']}
+            Дата: {date.today()}'''
+            send_email(message)
 
             return redirect('index')
 
@@ -117,10 +120,16 @@ class NewsListView(View):
         news = News.objects.all()
         contact = Contact.objects.all()
         form = RequestForm()
+
+        descriptions = [item.description.split('/') for item in news]
+
+
         context = {
             'title': 'Список новостей',
             'news': news,
             'contact': contact,
             'form': form,
+            'descriptions': descriptions,
         }
+
         return render(request, 'academy/news_list.html', context)

@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.db import models
 
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
+
 
 
 class Contact(models.Model):
@@ -163,6 +165,8 @@ class Course(models.Model):
         default=True,
     )
 
+    def get_absolute_url(self):
+        return reverse('course_detail', args=[str(self.id)])
 
     class Meta:
         verbose_name = _('Курс')
