@@ -117,10 +117,16 @@ class NewsListView(View):
         news = News.objects.all()
         contact = Contact.objects.all()
         form = RequestForm()
+
+        descriptions = [item.description.split('/') for item in news]
+
+
         context = {
             'title': 'Список новостей',
             'news': news,
             'contact': contact,
             'form': form,
+            'descriptions': descriptions,
         }
+
         return render(request, 'academy/news_list.html', context)
