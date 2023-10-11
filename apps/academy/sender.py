@@ -1,21 +1,13 @@
-from twilio.rest import Client
+from django.core.mail import send_mail
 
+from apps.academy.models import Contact
 from congig import settings
 
-from .models import Contact
 
-
-def send_whatsapp_notification(message):
-    account_sid = settings.TWILIO_ACCOUNT_SID
-    auth_token = settings.TWILIO_AUTH_TOKEN
-    client = Client(account_sid, auth_token)
+def send_email(message):
     contact = Contact.objects.first()
+    subject = 'Новая форма была заполнена'
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = [contact.email]
 
-    from_whatsapp_number = f'whatsapp:{settings.TWILIO_PHONE_NUMBER}'
-    to_whatsapp_number = f'whatsapp:{contact.phone_number}'
-
-    message = client.messages.create(
-        body=message,
-        from_=from_whatsapp_number,
-        to=to_whatsapp_number
-    )
+    send_mail(subject, message, from_email, recipient_list, fail_silently=False)

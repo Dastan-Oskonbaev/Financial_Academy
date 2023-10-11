@@ -5,7 +5,7 @@ from django.views import View
 
 from apps.academy.models import Teacher, Course, Contact, News, TeachersImages, AboutUs, OurServices
 from .forms import RequestForm
-from .sender import send_whatsapp_notification
+from .sender import send_email
 
 
 class IndexView(View):
@@ -50,11 +50,11 @@ class IndexView(View):
 
             data = form.cleaned_data
             message = f'''Новая форма была заполнена:
-ФИО: {data['full_name']}
-Номер тел.: {data['phone_number']}
-Курсы: {data['course']}
-Дата: {date.today()}'''
-            send_whatsapp_notification(message)
+            ФИО: {data['full_name']}
+            Номер тел.: {data['phone_number']}
+            Курсы: {data['course']}
+            Дата: {date.today()}'''
+            send_email(message)
 
             return redirect('index')
 
