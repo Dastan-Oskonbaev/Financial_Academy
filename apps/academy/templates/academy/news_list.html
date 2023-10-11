@@ -33,7 +33,7 @@
                     <div class="carousel-inner">
                         {% for image in news.images.all %}
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img src="{{ image.images.url }}" class="d-block w-100"
+                            <img src="{{ image.images.url }}" class="d-block w-100 h-25"
                                  alt="{{ image.news.title }} изображение {{ forloop.counter0 }}">
                         </div>
                         {% endfor %}

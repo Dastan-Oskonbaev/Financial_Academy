@@ -14,8 +14,8 @@
   }
 
   .news-img {
-    width: 15vw;
-    height: 25vh;
+    width: 30vw;
+    height: 45vh;
   }
 </style>
 
@@ -74,35 +74,35 @@
 <!-- About End -->
 <!-- News Start -->
 <section class="section section-lg bg-default">
-<div class="container">
-    <div class="row">
+    <div class="container">
         <div class="text-center">
             <h6 class="section-title bg-white text-center text-primary px-3">Новости</h6>
             <h1 class="mb-5">Будь всегда в курсе!</h1>
         </div>
+
         {% for news in news %}
         <div class="row gap-200">
             <div class="col-md-3">
-                <img src="{{ news.images.first.images.url }}" alt="" class="news-img"/>
+                <img src="{{ news.images.first.images.url }}" alt="" class="news-img img-fluid" style="max-height: 400px;" />
             </div>
             <div class="col-md-9">
                 <a href="{% url 'news_list' %}">
                     <p>{{ news.title }}</p>
                     <p>{{ news.date }}</p>
                     {% for description_list in descriptions %}
-                <ul style="list-style: none;">
-                    {% for description in description_list %}
-                    <li>{{ description }}</li>
+                    <div style="max-height: 400px; overflow: hidden;">
+                        <ul style="list-style: none;">
+                            {% for description in description_list %}
+                            <li class="text-ellipsis">{{ description }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                     {% endfor %}
-                </ul>
-                {% endfor %}
                 </a>
             </div>
         </div>
-        
         {% endfor %}
     </div>
-</div>
 </section>
 <!-- News End -->
 <!-- Courses Start -->
