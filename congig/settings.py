@@ -38,8 +38,6 @@ MY_APPS = [
 
 THIRD_PARTY_APPS = []
 
-SITE_ID = 1
-
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
@@ -48,8 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
 ] + MY_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
@@ -133,32 +129,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# STATIC_URL = '/home/Financial_Academy/staticfiles/'
+STATIC_URL = '/home/Financial_Academy/staticfiles/'
 #STATICFILES_DIRS = [BASE_DIR/"staticfiles"]
-# STATIC_ROOT = './staticfiles'
+STATIC_ROOT = './staticfiles'
 
-# MEDIA_URL = '/home/Financial_Academy/media/'
-# MEDIA_ROOT = './media'
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/home/Financial_Academy/media/'
+MEDIA_ROOT = './media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# for email send
-EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = config('TWILIO_PHONE_NUMBER')
 
 JAZZMIN_SETTINGS = {
     "site_brand": "Practicum",
@@ -207,11 +191,11 @@ JAZZMIN_UI_TWEAKS = {
     "actions_sticky_top": False
 }
 
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# CSRF_COOKIE_SECURE = True
-# CSRF_COOKIE_DOMAIN = 'practicumkg.com'
-# CSRF_TRUSTED_ORIGINS = ['https://practicumkg.com']
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_DOMAIN = 'practicumkg.com'
+CSRF_TRUSTED_ORIGINS = ['https://practicumkg.com']
 
 with contextlib.suppress(ImportError):
     from .local_settings import *
