@@ -38,6 +38,9 @@ class IndexView(View):
             service = services.description.split("/")
             context['service'] = service
 
+        descriptions = [item.description.split('/') for item in news]
+        context['descriptions'] = descriptions
+
         return render(request, 'academy/index.html', context)
 
     def post(self, request):

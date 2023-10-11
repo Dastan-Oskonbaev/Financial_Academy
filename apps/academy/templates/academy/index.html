@@ -88,8 +88,14 @@
             <div class="col-md-9">
                 <a href="{% url 'news_list' %}">
                     <p>{{ news.title }}</p>
-                    <p>{{ news.description }}</p>
                     <p>{{ news.date }}</p>
+                    {% for description_list in descriptions %}
+                <ul style="list-style: none;">
+                    {% for description in description_list %}
+                    <li>{{ description }}</li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
                 </a>
             </div>
         </div>
